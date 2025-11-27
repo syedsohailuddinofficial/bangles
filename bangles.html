@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fancy Bangles Store</title>
+<style>
+/* -------------------------------------------------
+   PASTEL BACKGROUND WITH FLOATING SPARKLES
+--------------------------------------------------- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ffe4ec, #e2f4ff, #fff5d7);
+    background-size: 300% 300%;
+    animation: bgShift 18s infinite alternate ease-in-out;
+}
+
+@keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Sparkles across whole page */
+.sparkle {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 50%;
+    box-shadow: 0 0 8px white;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(0); }
+    to { transform: translateY(120vh); }
+}
+
+/* -------------------------------------------------
+   HEADER
+--------------------------------------------------- */
+.header {
+    text-align: center;
+    padding: 25px;
+    color: #d63384;
+    font-size: 42px;
+    font-weight: 700;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* -------------------------------------------------
+   OFFER BANNER
+--------------------------------------------------- */
+.offer {
+    background: #ff2e63;
+    width: 85%;
+    margin: auto;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 10px;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px #ff2e63; }
+    to   { box-shadow: 0 0 25px #ff2e63; }
+}
+
+/* -------------------------------------------------
+   PRODUCT GRID
+--------------------------------------------------- */
+.products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px;
+}
+
+.card {
+    width: 320px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background: #d63384;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    margin: 10px 0 20px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #ff2e63;
+}
+
+/* -------------------------------------------------
+   CART PANEL
+--------------------------------------------------- */
+#cart-panel {
+    position: fixed;
+    right: -380px;
+    top: 0;
+    height: 100%;
+    width: 350px;
+    background: #ffffffdd;
+    backdrop-filter: blur(6px);
+    padding: 20px;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+
+#cart-panel h2 {
+    text-align: center;
+}
+
+.cart-item {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #aaa;
+}
+
+/* Payment Buttons */
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    background: #28a745;
+    color: white;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+}
+
+.pay-btn:hover {
+    background: #218838;
+}
+
+.cod-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff2e63;
+    color: white;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+}
+
+.cod-btn:hover {
+    background: #d81b4d;
+}
+
+/* Cart toggle button */
+.cart-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    background: #ff2e63;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Sparkles generator -->
+<script>
+for (let i = 0; i < 60; i++) {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = 3 + Math.random() * 4 + "s";
+    s.style.opacity = Math.random();
+    document.body.appendChild(s);
+}
+</script>
+
+<div class="header">✨ Fancy Bangles Store ✨</div>
+
+<div class="offer">🎄 Christmas Mega Sale — Flat 50% OFF! 🎁</div>
+
+<!-- CART BUTTON -->
+<button class="cart-toggle" onclick="toggleCart()">🛒</button>
+
+<!-- PRODUCT LIST -->
+<div class="products">
+
+    <div class="card">
+        <img src="https://i.postimg.cc/0bpLfKh2/bangles.jpg">
+        <h3>Golden Fancy Bangles</h3>
+        <p class="price">€20 <span style="text-decoration:line-through;color:#999">€40</span></p>
+        <button class="btn" onclick="addToCart('Golden Fancy Bangles',20)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/KRndN3CR/jewellery.png">
+        <h3>Premium Designer Bangles</h3>
+        <p class="price">€25 <span style="text-decoration:line-through;color:#999">€50</span></p>
+        <button class="btn" onclick="addToCart('Premium Designer Bangles',25)">Add to Cart</button>
+    </div>
+
+</div>
+
+<!-- CART PANEL -->
+<div id="cart-panel">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3>Total: €<span id="total">0</span></h3>
+
+    <button class="pay-btn" onclick="payNow()">💳 Pay Now</button>
+    <button class="cod-btn" onclick="cod()">🚚 Cash on Delivery</button>
+</div>
+
+<script>
+let cart = [];
+let cartOpen = false;
+
+function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+    alert(name + " added to cart! 🎀");
+}
+
+function updateCart() {
+    let box = document.getElementById("cart-items");
+    box.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price;
+        box.innerHTML += `<div class="cart-item">${item.name} — €${item.price}</div>`;
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+function toggleCart() {
+    let panel = document.getElementById("cart-panel");
+    if (cartOpen) {
+        panel.style.right = "-380px";
+    } else {
+        panel.style.right = "0";
+    }
+    cartOpen = !cartOpen;
+}
+
+function payNow() {
+    alert("Redirecting to secure payment gateway… 💳");
+}
+
+function cod() {
+    alert("Order placed with Cash on Delivery! 🚚");
+}
+</script>
+
+</body>
+</html>
